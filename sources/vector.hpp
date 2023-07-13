@@ -55,6 +55,20 @@ public:
     Vector operator-() const {
         return Vector(-x, -y, -z);
     }
+
+    // Accesseur pour accéder aux composantes du vecteur
+    float operator[](int index) const {
+        if (index == 0) return x;
+        if (index == 1) return y;
+        if (index == 2) return z;
+        return 0.0f;
+    }
+
+    float& operator[](int index) {
+        if (index == 0) return x;
+        else if (index == 1) return y;
+        else return z;
+    }
 };
 
 #endif // VECTOR_HPP

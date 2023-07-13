@@ -126,6 +126,12 @@ CMakeFiles/Lancer_de_rayon.dir/main.cpp.obj: \
  C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/ostream.tcc \
  C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/istream \
  C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/istream.tcc \
+ C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/vector \
+ C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_construct.h \
+ C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_uninitialized.h \
+ C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_vector.h \
+ C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_bvector.h \
+ C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/vector.tcc \
  C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/core.hpp \
  C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/core/cvdef.h \
  C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/core/version.hpp \
@@ -148,7 +154,6 @@ CMakeFiles/Lancer_de_rayon.dir/main.cpp.obj: \
  C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/algorithmfwd.h \
  C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_heap.h \
  C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_tempbuf.h \
- C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_construct.h \
  C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/uniform_int_dist.h \
  C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/core/cvstd.hpp \
  C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/cstring \
@@ -169,11 +174,6 @@ CMakeFiles/Lancer_de_rayon.dir/main.cpp.obj: \
  C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/cfloat \
  C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/float.h \
  C:/Users/marcb/Documents/cpp/mingw64/x86_64-w64-mingw32/include/float.h \
- C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/vector \
- C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_uninitialized.h \
- C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_vector.h \
- C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_bvector.h \
- C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/vector.tcc \
  C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/core/mat.hpp \
  C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/core/bufferpool.hpp \
  C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/core/mat.inl.hpp \
@@ -205,6 +205,7 @@ CMakeFiles/Lancer_de_rayon.dir/main.cpp.obj: \
  C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/videoio/videoio_c.h \
  C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/imgproc.hpp \
  C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\point.hpp \
+ C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\Vector.hpp \
  C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\vector.hpp \
  C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\ray.hpp \
  C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\matrix.hpp \
@@ -213,8 +214,20 @@ CMakeFiles/Lancer_de_rayon.dir/main.cpp.obj: \
  C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\entity.hpp \
  C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\Matrix.hpp \
  C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\Point.hpp \
- C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\Vector.hpp \
  C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\Ray.hpp \
  C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\camera.hpp \
  C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\Entity.hpp \
- C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\light.hpp
+ C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\light.hpp \
+ C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\Color.hpp \
+ C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\plan.hpp \
+ C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\square.hpp \
+ C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\Plan.hpp \
+ C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\sphere.hpp \
+ C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\Object.hpp \
+ C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\Material.hpp \
+ C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\cube.hpp \
+ C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\color.hpp \
+ C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\material.hpp \
+ C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\object.hpp \
+ C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\scene.hpp \
+ C:\Users\marcb\Documents\cpp\Ray-Tracing\sources\Light.hpp

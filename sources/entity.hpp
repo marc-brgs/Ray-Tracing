@@ -82,6 +82,18 @@ public:
         return Vector(transformedVector.getX(), transformedVector.getY(), transformedVector.getZ());
     }
 
+    Ray localToGlobal(const Ray& ray) const {
+        Point globalOrigin = localToGlobal(ray.origin);
+        Vector globalDirection = localToGlobal(ray.vector);
+        return Ray(globalOrigin, globalDirection);
+    }
+
+    Ray globalToLocal(const Ray& ray) const {
+        Point localOrigin = globalToLocal(ray.origin);
+        Vector localDirection = globalToLocal(ray.vector);
+        return Ray(localOrigin, localDirection);
+    }
+
 private:
     Matrix transformationMatrix;
 

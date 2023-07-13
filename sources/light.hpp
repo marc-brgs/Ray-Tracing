@@ -4,10 +4,15 @@
 #include "Entity.hpp"
 #include "Ray.hpp"
 #include "Vector.hpp"
+#include "Color.hpp"
 
 class Light : public Entity {
 public:
-    Light() {}
+    Color id; // Composante diffuse de la lumière
+    Color is; // Composante spéculaire de la lumière
+
+    Light(const Color& diffuse, const Color& specular) : id(diffuse), is(specular) {}
+    Light() : id(Color()), is(Color()) {}
 
     Ray getRayToLight(const Point& p) const {
         Point globalOrigin = localToGlobal(Point(0, 0, 0));

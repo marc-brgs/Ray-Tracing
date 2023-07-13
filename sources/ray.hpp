@@ -14,6 +14,12 @@ public:
     Ray(const Point& origin, const Vector& vector)
             : origin(origin), vector(vector) {}
 
+    // Méthode pour normaliser le rayon
+    Ray normalized() {
+        Vector v = vector / vector.norm();
+        return Ray(origin, v);
+    }
+
     Point origin;
     Vector vector;
 };

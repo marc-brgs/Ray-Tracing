@@ -25,10 +25,54 @@ public:
 
     // Calcul de l'inverse de la matrice
     Matrix inverse() const {
-        // Implémentation de l'inversion de la matrice
-        // ...
-        // Remplacez cette implémentation par votre propre code pour l'inversion de la matrice
-        return Matrix();
+        Matrix copy = *this;
+        Matrix result;
+
+        // Créer une matrice identité
+        for (int i = 0; i < 4; ++i) {
+            result(i, i) = 1.0f;
+        }
+
+        // Appliquer l'algorithme de Gauss-Jordan
+        for (int i = 0; i < 4; ++i) {
+            // Rechercher le pivot dans la colonne i
+            int pivotRow = i;
+            float pivotValue = copy(i, i);
+            for (int j = i + 1; j < 4; ++j) {
+                if (std::abs(copy(j, i)) > std::abs(pivotValue)) {
+                    pivotRow = j;
+                    pivotValue = copy(j, i);
+                }
+            }
+
+            // Échanger les lignes pour mettre le pivot en position (i, i)
+            if (pivotRow != i) {
+                for (int j = 0; j < 4; ++j) {
+                    std::swap(copy(i, j), copy(pivotRow, j));
+                    std::swap(result(i, j), result(pivotRow, j));
+                }
+            }
+
+            // Normaliser la ligne du pivot
+            float pivotInverse = 1.0f / pivotValue;
+            for (int j = 0; j < 4; ++j) {
+                copy(i, j) *= pivotInverse;
+                result(i, j) *= pivotInverse;
+            }
+
+            // Éliminer les autres valeurs dans la colonne i
+            for (int j = 0; j < 4; ++j) {
+                if (j != i) {
+                    float factor = copy(j, i);
+                    for (int k = 0; k < 4; ++k) {
+                        copy(j, k) -= factor * copy(i, k);
+                        result(j, k) -= factor * result(i, k);
+                    }
+                }
+            }
+        }
+
+        return result;
     }
 
     // Multiplication de matrices
