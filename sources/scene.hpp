@@ -62,6 +62,20 @@ public:
         return nullptr;
     }
 
+    // Retourne le nombre de lumières dans la scène
+    int nbObjects() const {
+        return objects.size();
+    }
+
+    // Retourne un pointeur vers le nième objet dans la scène
+    Object* getObject(int index) const {
+        if (index >= 0 && index < objects.size()) {
+            return objects[index];
+        }
+        return nullptr;
+    }
+
+
     // Retourne un pointeur vers l'objet intersecté le plus proche par le rayon
     // Met à jour le point d'impact passé en paramètre par référence
     Object* closer_intersected(const Ray& ray, Point& impact) const {

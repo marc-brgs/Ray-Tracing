@@ -222,17 +222,18 @@ CMakeFiles/Lancer_de_rayon.dir/main.cpp.obj: main.cpp \
   light.hpp \
   color.hpp \
   plan.hpp \
+  object.hpp \
+  material.hpp \
   square.hpp \
   plan.hpp \
   sphere.hpp \
-  object.hpp \
-  material.hpp \
   cube.hpp \
   color.hpp \
   material.hpp \
   object.hpp \
   scene.hpp \
-  light.hpp
+  light.hpp \
+  cylinder.hpp
 
 
 C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/core/cvdef.h:
@@ -669,10 +670,12 @@ color.hpp:
 
 plan.hpp:
 
+material.hpp:
+
 square.hpp:
 
 sphere.hpp:
 
-material.hpp:
-
 cube.hpp:
+
+cylinder.hpp:

@@ -24,6 +24,7 @@
 #include "material.hpp"
 #include "object.hpp"
 #include "scene.hpp"
+#include "cylinder.hpp"
 
 using namespace std;
 
@@ -49,19 +50,30 @@ int main() {
     Color diffuse(1.0f, 1.0f, 1.0f);
     Color specular(0.0f, 0.0f, 1.0f);
     Light light(diffuse, specular);
-    light.translate(5, 5, -10);
+    light.translate(5, 5, -5);
 
     // Ajout de la lumière à la scène
     scene.addLight(&light);
 
-    Camera camera(45);
-    camera.translate(2.2, 2.2, 100);
+    // vue d'en face
+    Camera camera(30);
+    camera.translate(0, 0, 100);
+    //camera.rotateX(0);
+
+    // Vue arrière
+    //camera.translate(1, 1, -100);
+    //camera.rotateY(180);
+
+    // vue du haut
+    //camera.translate(0, -100, 0); // monte la cam
+    //camera.rotateX(-90); // tourne vers le bas
 
     Plan plan;
     Sphere sphere;
     Sphere sphere2;
     Square square;
     Cube cube;
+    Cylinder cylinder;
 
     square.rotateZ(45);
     sphere.translate(2, 0, 0);
@@ -73,12 +85,20 @@ int main() {
     cube.rotateX(45);
     cube.rotateY(45);
     cube.rotateZ(45);
-    cube.translate(0, 0, -1);
+    cube.translate(0, -1, 0);
 
-    //scene.addObject(&square);
+    cylinder.rotateX(45);
+    cylinder.rotateZ(45);
+
+    plan.rotateX(90);
+    plan.translate(0, 3, 0);
+
+
     scene.addObject(&sphere);
     scene.addObject(&sphere2);
     scene.addObject(&cube);
+    //scene.addObject(&plan);
+    scene.addObject(&cylinder);
 
     for (int y = 0; y < rows; y++) {
         for (int x = 0; x < cols; x++) {
@@ -96,16 +116,29 @@ int main() {
             // Définir la couleur du pixel en fonction de l'intersection
             cv::Vec3b color;
             if (intersectedObject != nullptr) {
-                // Obtenir le matériau de l'objet intersecté
-                Material material = intersectedObject->getMaterial(impact);
+                // Ombre
+                bool isShadowed = false;
+                Object* shadowedObject;
+                Point shadowImpact;
+                shadowedObject = scene.closer_intersected(light.getRayToLight(impact), shadowImpact);
+                if (shadowedObject != nullptr && shadowedObject != intersectedObject) {
+                    isShadowed = true;
+                }
 
-                // Obtenir la couleur de l'impact en fonction des éléments de la scène
-                Color impactColor = getImpactColor(ray, *intersectedObject, impact, scene);
+                if (isShadowed) {
+                    color = Color(0, 0, 0).toVec3b();
+                }
+                else {
+                    // Pas d'ombre
+                    Material material = intersectedObject->getMaterial(impact);
 
-                // Définir la couleur du pixel dans l'image
-                color = impactColor.toVec3b();
-            } else {
-                color = scene.getBackground().toVec3b();
+                    Color impactColor = getImpactColor(ray, *intersectedObject, impact, scene);
+
+                    color = impactColor.toVec3b();
+                }
+            }
+            else {
+                    color = scene.getBackground().toVec3b();
             }
 
             // Définir la couleur du pixel dans l'image
@@ -135,7 +168,7 @@ Color getImpactColor(const Ray& ray, const Object& obj, const Point& impact, con
         if (alpha > 0)
             c += (light->id) * m.kd * alpha;
 
-        Vector rm = (normal.vector * lv.dot(normal.vector) * 2) - lv;
+        Vector rm = (normal.vector * (2 * normal.vector.dot(lv))) - lv;
 
         float beta = -rm.dot(ray.vector);
         if (beta > 0)
@@ -144,3 +177,4 @@ Color getImpactColor(const Ray& ray, const Object& obj, const Point& impact, con
 
     return c;
 }
+

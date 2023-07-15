@@ -68,7 +68,7 @@ public:
             v[2] = -1.0;
 
         if (lo[0] < 1 && lo[0] > -1 && lo[1] < 1 && lo[1] > -1 && lo[2] < 1 && lo[2] > -1)
-            return localToGlobal(Ray(lp, -v)).normalized();
+            return localToGlobal(Ray(lp, v)).normalized();
         return localToGlobal(Ray(lp, v)).normalized();
     }
 

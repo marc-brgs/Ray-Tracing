@@ -33,7 +33,7 @@ public:
 
 
     cv::Vec3b toVec3b() const {
-        return cv::Vec3b(static_cast<uchar>(b * 255), static_cast<uchar>(g * 255), static_cast<uchar>(r * 255));
+        return cv::Vec3b(static_cast<uchar>(b * 255), static_cast<uchar>(g * 255), static_cast<uchar>(r * 255)); // vers BGR
     }
 
     Color& operator+=(const Color& other) {
