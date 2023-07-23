@@ -73,13 +73,45 @@ public:
     }
 
     Material getMaterial(const Point& p) const {
-        Color ambient(0.0, 0.0, 0.0); // Composante ambiante (noir)
-        Color diffuse(0.0, 1, 0); // Composante diffuse (rouge)
-        Color specular(0.0, 0.0, 0.0); // Composante spéculaire (noir)
-        float shininess = 0; // Exposant de brillance
+        if(!hasTexture) {
+            Color ambient(0.0, 1.0, 0.0); // Composante ambiante (vert)
+            Color diffuse(0.0, 1.0, 0.0); // Composante diffuse (vert)
 
-        Material material(ambient, diffuse, specular, shininess);
-        return material;
+            Material material(ambient, diffuse, this->specular, this->shininess);
+            return material;
+        }
+        else {
+            Point textureCoords = getTextureCoordinates(p);
+
+            // Coordonnées de texture comprises entre 0 et 1
+            float u = textureCoords.x;
+            float v = textureCoords.y;
+
+            if (texture.empty()) {
+                return Material(Color(1.0f, 0.0f, 1.0f), Color(1.0f, 0.0f, 1.0f), Color(1.0f, 0.0f, 1.0f), 0.0f);
+            }
+
+            int x = static_cast<int>(u * texture.cols);
+            int y = static_cast<int>(v * texture.rows);
+
+            if (x < 0 || x >= texture.cols || y < 0 || y >= texture.rows) {
+                return Material(Color(1.0f, 0.0f, 1.0f), Color(1.0f, 0.0f, 1.0f), Color(1.0f, 0.0f, 1.0f), 0.0f);
+            }
+
+            cv::Vec3b pixelColor = texture.at<cv::Vec3b>(y, x);
+
+            Color color(pixelColor[2] / 255.0f, pixelColor[1] / 255.0f, pixelColor[0] / 255.0f);
+
+            return Material(color, color, color, this->shininess);
+        }
+    }
+
+    Point getTextureCoordinates(const Point& p)const{
+        Point lp = globalToLocal(p);
+        if(lp[0]>0.999 || lp[0]<-0.999)return Point(lp[2]/2 + 0.5,lp[1]/2 + 0.5,0);
+        if(lp[1]>0.999 || lp[1]<-0.999)return Point(lp[0]/2 + 0.5,lp[2]/2 + 0.5,0);
+        if(lp[2]>0.999 || lp[2]<-0.999)return Point(lp[0]/2 + 0.5,lp[1]/2 + 0.5,0);
+        return Point(0,0,0);
     }
 };
 

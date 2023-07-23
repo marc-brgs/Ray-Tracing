@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <chrono>
 
 #include <opencv2/core.hpp>
 #include <opencv2/highgui.hpp>
@@ -34,6 +35,11 @@ int main() {
     int cols = 700;
     int rows = 700;
     string image_name = "result";
+    string shadowInput = "n";
+
+    auto now = std::chrono::system_clock::now();
+    auto timestamp = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
+    int randomValue = timestamp;
 
     // std::cout << "Enter cols : ";
     // std::cin >> cols;
@@ -41,44 +47,57 @@ int main() {
     // std::cin >> rows;
     // std::cout << "Enter image name : ";
     // std::cin >> image_name;
+    // std::cout << "Enable shadow? (y/n) ";
+    // std::cin >> shadowInput;
 
+    bool enabledShadow = shadowInput == "y" ? true : false;
     cv::Mat img(rows, cols, CV_8UC3, cv::Scalar(0, 0, 255));
 
-    Scene scene(Color(1.0f, 1.0f, 1.0f), Color(0.2f, 0.2f, 0.2f));
+    Scene scene(Color(0.05f, 0.05f, 0.05f), Color(0.1f, 0.1f, 0.1f));
 
     // Création d'une instance de Light
-    Color diffuse(1.0f, 1.0f, 1.0f);
-    Color specular(0.0f, 0.0f, 1.0f);
+    Color diffuse(0.8f, 0.8f, 1.0f);
+    Color specular(0.8f, 0.8f, 1.0f);
     Light light(diffuse, specular);
-    light.translate(5, 5, -5);
+    light.translate(5, -5, 5);
 
     // Ajout de la lumière à la scène
     scene.addLight(&light);
 
     // vue d'en face
-    Camera camera(30);
-    camera.translate(0, 0, 100);
-    //camera.rotateX(0);
-
-    // Vue arrière
-    //camera.translate(1, 1, -100);
-    //camera.rotateY(180);
-
-    // vue du haut
-    //camera.translate(0, -100, 0); // monte la cam
-    //camera.rotateX(-90); // tourne vers le bas
+    Camera camera(7);
+    camera.translate(0, 0, 30);
+    //camera.rotateY(90);
 
     Plan plan;
     Sphere sphere;
     Sphere sphere2;
+    Sphere sphere3;
     Square square;
     Cube cube;
     Cylinder cylinder;
 
-    square.rotateZ(45);
-    sphere.translate(2, 0, 0);
+    square.rotateX(30);
+    square.rotateZ(35);
+    square.scale(.8);
+    square.translate(3, -2, -6);
+    square.loadTexture("textures/lava.png");
+
+    sphere.rotateX(90);
+    sphere.rotateY(90);
+    sphere.translate(2, 1, 0);
+    sphere.loadTexture("textures/glow_rock.png");
+    sphere.shininess = 1.0f;
+
+    sphere2.rotateX(90);
     sphere2.scale(.8f);
-    sphere2.translate(-2, 0, -1);
+    sphere2.translate(-2, 0, -2);
+    sphere2.loadTexture("textures/puzzle.png");
+
+    sphere3.rotateX(90);
+    sphere3.scale(.5f);
+    sphere3.translate(-2, 2.7, 6);
+    sphere3.loadTexture("textures/maze.jpg");
 
     cube.scale(.5f);
     cube.translate(-2, 0, -2);
@@ -86,19 +105,25 @@ int main() {
     cube.rotateY(45);
     cube.rotateZ(45);
     cube.translate(0, -1, 0);
+    cube.loadTexture("textures/dirt.png");
 
     cylinder.rotateX(45);
     cylinder.rotateZ(45);
+    cylinder.scale(.4);
+    cylinder.translate(0, 0, -18);
 
     plan.rotateX(90);
     plan.translate(0, 3, 0);
+    plan.loadTexture("textures/grid.png");
 
 
     scene.addObject(&sphere);
     scene.addObject(&sphere2);
+    scene.addObject(&sphere3);
     scene.addObject(&cube);
-    //scene.addObject(&plan);
+    scene.addObject(&plan);
     scene.addObject(&cylinder);
+    scene.addObject(&square);
 
     for (int y = 0; y < rows; y++) {
         for (int x = 0; x < cols; x++) {
@@ -125,7 +150,7 @@ int main() {
                     isShadowed = true;
                 }
 
-                if (isShadowed) {
+                if (isShadowed && enabledShadow) {
                     color = Color(0, 0, 0).toVec3b();
                 }
                 else {
@@ -152,11 +177,12 @@ int main() {
     cv::waitKey(0);
     cv::destroyAllWindows();
 
-    cv::imwrite(image_name + ".jpg", img);
+    cv::imwrite("results/" + image_name + std::to_string(randomValue) + ".jpg", img);
 
     return 0;
 }
 
+// Phong
 Color getImpactColor(const Ray& ray, const Object& obj, const Point& impact, const Scene& scene) {
     Material m = obj.getMaterial(impact);
     Ray normal = obj.getNormal(impact, ray.origin);
@@ -175,6 +201,7 @@ Color getImpactColor(const Ray& ray, const Object& obj, const Point& impact, con
             c += (light->is) * m.ks * pow(beta, m.shininess);
     }
 
+    c.clamp();
     return c;
 }
 

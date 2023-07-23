@@ -42,6 +42,16 @@ public:
         b += other.b;
         return *this;
     }
+
+    Color operator+(const Color& other) {
+        return Color(r + other.r, g + other.g, b + other.b);
+    }
+
+    void clamp() {
+        r = std::max(0.0f, std::min(1.0f, r));
+        g = std::max(0.0f, std::min(1.0f, g));
+        b = std::max(0.0f, std::min(1.0f, b));
+    }
 };
 
 #endif // COLOR_HPP

@@ -134,10 +134,17 @@ CMakeFiles/Lancer_de_rayon.dir/main.cpp.obj: main.cpp \
   C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_vector.h \
   C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_bvector.h \
   C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/vector.tcc \
+  C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/chrono \
+  C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ratio \
+  C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/limits \
+  C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ctime \
+  C:/Users/marcb/Documents/cpp/mingw64/x86_64-w64-mingw32/include/time.h \
+  C:/Users/marcb/Documents/cpp/mingw64/x86_64-w64-mingw32/include/_timeval.h \
+  C:/Users/marcb/Documents/cpp/mingw64/x86_64-w64-mingw32/include/pthread_time.h \
+  C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/parse_numbers.h \
   C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/core.hpp \
   C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/core/cvdef.h \
   C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/core/version.hpp \
-  C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/limits \
   C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/core/hal/interface.h \
   C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/cstddef \
   C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/core/cv_cpu_dispatch.h \
@@ -297,6 +304,8 @@ C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c+
 C:/Users/marcb/Documents/cpp/mingw64/x86_64-w64-mingw32/include/crtdefs.h:
 
 C:/Users/marcb/Documents/cpp/mingw64/x86_64-w64-mingw32/include/_mingw.h:
+
+C:/Users/marcb/Documents/cpp/mingw64/x86_64-w64-mingw32/include/_timeval.h:
 
 C:/Users/marcb/Documents/cpp/mingw64/x86_64-w64-mingw32/include/_mingw_secapi.h:
 
@@ -548,11 +557,27 @@ C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c+
 
 C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/vector.tcc:
 
+material.hpp:
+
+C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/chrono:
+
+C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ratio:
+
+C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/limits:
+
+C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ctime:
+
+cube.hpp:
+
+C:/Users/marcb/Documents/cpp/mingw64/x86_64-w64-mingw32/include/time.h:
+
+C:/Users/marcb/Documents/cpp/mingw64/x86_64-w64-mingw32/include/pthread_time.h:
+
+C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/parse_numbers.h:
+
 C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/core.hpp:
 
 C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/core/version.hpp:
-
-C:/Users/marcb/Documents/cpp/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/limits:
 
 C:/Users/marcb/Documents/cpp/opencv/build/include/opencv2/core/hal/interface.h:
 
@@ -670,12 +695,8 @@ color.hpp:
 
 plan.hpp:
 
-material.hpp:
-
 square.hpp:
 
 sphere.hpp:
-
-cube.hpp:
 
 cylinder.hpp:
