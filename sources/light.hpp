@@ -13,6 +13,7 @@ public:
 
     Light(const Color& diffuse, const Color& specular) : id(diffuse), is(specular) {}
     Light() : id(Color()), is(Color()) {}
+    ~Light() {};
 
     Ray getRayFromLight(const Point& p) const {
         Point globalOrigin = localToGlobal(Point(0, 0, 0));

@@ -7,35 +7,31 @@
 
 class Matrix {
 public:
-    // Constructeur par défaut pour une matrice identité
     Matrix() {
         values.fill(0.0);
         values[0] = values[5] = values[10] = values[15] = 1.0;
     }
+    ~Matrix() {}
 
-    // Accès à une case spécifique de la matrice
     float& operator()(int row, int col) {
         return values[row * 4 + col];
     }
 
-    // Accès en lecture seule à une case spécifique de la matrice
     float operator()(int row, int col) const {
         return values[row * 4 + col];
     }
 
-    // Calcul de l'inverse de la matrice
     Matrix inverse() const {
         Matrix copy = *this;
         Matrix result;
 
-        // Créer une matrice identité
+        // Matrice identité
         for (int i = 0; i < 4; ++i) {
             result(i, i) = 1.0f;
         }
 
-        // Appliquer l'algorithme de Gauss-Jordan
+        // Algorithme de Gauss-Jordan
         for (int i = 0; i < 4; ++i) {
-            // Rechercher le pivot dans la colonne i
             int pivotRow = i;
             float pivotValue = copy(i, i);
             for (int j = i + 1; j < 4; ++j) {
@@ -75,7 +71,6 @@ public:
         return result;
     }
 
-    // Multiplication de matrices
     Matrix operator*(const Matrix& other) const {
         Matrix result;
 
@@ -92,7 +87,6 @@ public:
         return result;
     }
 
-    // Multiplication d'une matrice avec un HPoint
     HPoint operator*(const HPoint& point) const {
         float x = values[0] * point.getX() + values[1] * point.getY() + values[2] * point.getZ() + values[3] * point.getW();
         float y = values[4] * point.getX() + values[5] * point.getY() + values[6] * point.getZ() + values[7] * point.getW();
@@ -102,7 +96,6 @@ public:
         return HPoint(x, y, z, w);
     }
 
-    // Multiplication d'une matrice avec un HVector
     HVector operator*(const HVector& vector) const {
         float x = values[0] * vector.getX() + values[1] * vector.getY() + values[2] * vector.getZ() + values[3] * vector.getW();
         float y = values[4] * vector.getX() + values[5] * vector.getY() + values[6] * vector.getZ() + values[7] * vector.getW();

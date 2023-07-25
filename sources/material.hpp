@@ -10,7 +10,6 @@ public:
     Color ks;  // Composante spéculaire
     float shininess;  // Exposant de brillance
 
-    // Constructeur
     Material(const Color& ka, const Color& kd, const Color& ks, float shininess)
             : ka(ka), kd(kd), ks(ks), shininess(shininess) {}
 };

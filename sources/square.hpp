@@ -6,6 +6,7 @@
 class Square : public Plan {
 public:
     Square() {}
+    ~Square() {};
 
     bool intersect(const Ray& ray, Point& impact) const {
         Ray local_ray = globalToLocal(ray);

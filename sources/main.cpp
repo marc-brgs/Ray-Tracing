@@ -41,27 +41,25 @@ int main() {
     auto timestamp = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
     int randomValue = timestamp;
 
-    // std::cout << "Enter cols : ";
-    // std::cin >> cols;
-    // std::cout << "Enter rows : ";
-    // std::cin >> rows;
-    // std::cout << "Enter image name : ";
-    // std::cin >> image_name;
-    // std::cout << "Enable shadow? (y/n) ";
-    // std::cin >> shadowInput;
+    std::cout << "Enter cols : ";
+    std::cin >> cols;
+    std::cout << "Enter rows : ";
+    std::cin >> rows;
+    std::cout << "Enter image name : ";
+    std::cin >> image_name;
+    std::cout << "Enable shadow? (y/n) ";
+    std::cin >> shadowInput;
 
     bool enabledShadow = shadowInput == "y" ? true : false;
     cv::Mat img(rows, cols, CV_8UC3, cv::Scalar(0, 0, 255));
 
     Scene scene(Color(0.05f, 0.05f, 0.05f), Color(0.1f, 0.1f, 0.1f));
 
-    // Création d'une instance de Light
     Color diffuse(0.8f, 0.8f, 1.0f);
     Color specular(0.8f, 0.8f, 1.0f);
     Light light(diffuse, specular);
     light.translate(5, -5, 5);
 
-    // Ajout de la lumière à la scène
     scene.addLight(&light);
 
     // vue d'en face
@@ -127,18 +125,14 @@ int main() {
 
     for (int y = 0; y < rows; y++) {
         for (int x = 0; x < cols; x++) {
-            // Convertir les coordonnées de l'écran en coordonnées normalisées
-            // allant de -1 à 1 dans les deux dimensions
             float screenX = static_cast<float>(x) / cols * 2 - 1;
             float screenY = static_cast<float>(y) / rows * 2 - 1;
 
-            // Générer un rayon correspondant au pixel de l'écran
             Ray ray = camera.getRay(screenX, screenY);
 
             Point impact;
             Object* intersectedObject = scene.closer_intersected(ray, impact);
 
-            // Définir la couleur du pixel en fonction de l'intersection
             cv::Vec3b color;
             if (intersectedObject != nullptr) {
                 // Ombre

@@ -14,13 +14,10 @@ private:
     Color ambient;
 
 public:
-    // Constructeur
     Scene(const Color& background, const Color& ambient)
             : background(background), ambient(ambient) {}
 
-    // Destructeur
     ~Scene() {
-        // Libérer la mémoire des objets et des lumières
         for (Object* obj : objects) {
             delete obj;
         }
@@ -29,32 +26,48 @@ public:
         }
     }
 
-    // Ajouter un objet à la scène
+    // Opérateur par affectation
+    Scene& operator=(const Scene& other) {
+        if (this == &other) {
+            return *this;
+        }
+
+        background = other.background;
+        ambient = other.ambient;
+
+        objects.clear();
+        for (Object* obj : other.objects) {
+            objects.push_back(obj);
+        }
+
+        lights.clear();
+        for (Light* light : other.lights) {
+            lights.push_back(light);
+        }
+
+        return *this;
+    }
+
     void addObject(Object* obj) {
         objects.push_back(obj);
     }
 
-    // Ajouter une lumière à la scène
     void addLight(Light* light) {
         lights.push_back(light);
     }
 
-    // Retourne la couleur d'arrière-plan
     Color getBackground() const {
         return background;
     }
 
-    // Retourne la valeur de la lumière ambiante
     Color getAmbient() const {
         return ambient;
     }
 
-    // Retourne le nombre de lumières dans la scène
     int nbLights() const {
         return lights.size();
     }
 
-    // Retourne un pointeur vers la nième lumière
     const Light* getLight(int index) const {
         if (index >= 0 && index < lights.size()) {
             return lights[index];
@@ -62,12 +75,10 @@ public:
         return nullptr;
     }
 
-    // Retourne le nombre de lumières dans la scène
     int nbObjects() const {
         return objects.size();
     }
 
-    // Retourne un pointeur vers le nième objet dans la scène
     Object* getObject(int index) const {
         if (index >= 0 && index < objects.size()) {
             return objects[index];

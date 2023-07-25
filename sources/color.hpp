@@ -10,19 +10,19 @@ public:
     // Constructeur
     Color() : r(0), g(0), b(0) {}
     Color(float r, float g, float b) : r(r), g(g), b(b) {}
+    ~Color() {};
 
-    // Produit composante par composante de deux couleurs
     Color mul(const Color& other) const {
         return Color(r * other.r, g * other.g, b * other.b);
     }
 
-    // Accesseurs pour accéder aux composantes de la couleur
     float operator[](int index) const {
         if (index == 0) return r;
         if (index == 1) return g;
         if (index == 2) return b;
         return 0.0f;
     }
+
     Color operator*(const Color& other) const {
         return Color(r * other.r, g * other.g, b * other.b);
     }

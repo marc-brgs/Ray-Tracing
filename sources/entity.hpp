@@ -7,6 +7,12 @@
 #include "Ray.hpp"
 
 class Entity {
+private:
+    Matrix transformationMatrix;
+
+    float degToRad(float deg) {
+        return deg * M_PI / 180.0;
+    }
 public:
     Entity() : transformationMatrix(Matrix()) {}
 
@@ -92,13 +98,6 @@ public:
         Point localOrigin = globalToLocal(ray.origin);
         Vector localDirection = globalToLocal(ray.vector);
         return Ray(localOrigin, localDirection);
-    }
-
-private:
-    Matrix transformationMatrix;
-
-    float degToRad(float deg) {
-        return deg * M_PI / 180.0;
     }
 };
 
